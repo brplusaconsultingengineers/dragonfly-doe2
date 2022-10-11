@@ -3,6 +3,7 @@ from typing import List
 from dragonfly.model import Model as DFModel
 from dragonfly.story import Story as DFStory
 from dragonfly.room2d import Room2D as DFRoom
+from honeybee.model import Model as HBModel
 
 from ladybug.analysisperiod import AnalysisPeriod
 
@@ -117,6 +118,10 @@ class Model:
         model = DFModel.from_dfjson(dfjson_file)
         return cls.from_df_model(model, run_period)
 
+    @classmethod
+    def from_hb_model(cls, hb_model: HBModel):
+        pass
+    
     @property
     def _header(self):
         """File header.

@@ -1,1 +1,2 @@
 dragonfly-energy>=1.16.38
+honeybee-energy

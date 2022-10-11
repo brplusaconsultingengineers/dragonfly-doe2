@@ -4,6 +4,7 @@
 from dragonfly.room2d import Room2D
 from dragonfly.story import Story
 from .utils import short_name, lower_left_properties
+from honeybee.face import Face3D
 
 
 class Polygon(object):
@@ -12,6 +13,12 @@ class Polygon(object):
     def __init__(self, name, vertices):
         self.name = name
         self.vertice = vertices
+
+    @classmethod
+    def from_honeybee_face(cls, face: Face3D):
+        name = face.display_name
+        vertices = face.geometry.lower_left_counter_clockwise_vertices
+        return cls(name=name, vertices=vertices)
 
     @classmethod
     def from_room(cls, room: Room2D, tolerace=0.01):
@@ -34,7 +41,7 @@ class Polygon(object):
         This is based on the initial code by Trevor so I didn't change it.
         """
         geo = story.footprint(tolerance=tolerance)[0]
-        # 
+        #
         b_pts = geo.boundary
         # remove duplicate vertices if any
         new_bound = []
